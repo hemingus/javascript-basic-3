@@ -272,6 +272,10 @@ const languageHellos = {
 	polsk: "czesc"
 }
 
+// Sjekker string og returnerer melding om "halloene" til 
+// --alle-- språkene som oppdages i teksten separert med ny linje.
+// Ikke bare første språket som oppdages.
+
 function helloChecker(text) {
 	let result = ""
 	for (let lang in languageHellos) {
