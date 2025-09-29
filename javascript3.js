@@ -90,7 +90,21 @@ let combinedAge = 0;
 
 // Skriv koden for oppgave 1 her
 
+for (let i = 0; i < people.length; i++) {
+    if (people[i].name === "Otto") {
+        continue;
+    }
+    people[i].city = cities[Math.floor(Math.random() * cities.length)];
+    people[i].title = people[i].male ? "Mr." : "Ms.";
+    people[i].age += 2;
+    people[i].hobbies.unshift("coding");
+    combinedAge += people[i].age;
+}
+
+console.log(people);
+
 let averageAge = 0;
+averageAge = combinedAge / (people.length - 1); // Subtracting 1 to exclude Otto
 
 /******************************************************************************
 2.
@@ -113,6 +127,8 @@ diceRoller(5, 20) skal returnere et array med 5 tilfeldige tall fra 1-20.
 ******************************************************************************/
 
 // Skriv koden for oppgave 2 her
+
+
 
 /******************************************************************************
 3.
