@@ -87,7 +87,7 @@ const people = [
 	}
 ];
 let combinedAge = 0;
-
+let numPeople = 0;
 // Skriv koden for oppgave 1 her
 
 for (let i = 0; i < people.length; i++) {
@@ -99,12 +99,15 @@ for (let i = 0; i < people.length; i++) {
     people[i].age += 2;
     people[i].hobbies.unshift("coding");
     combinedAge += people[i].age;
+	numPeople++;
 }
 
 console.log(people);
 
 let averageAge = 0;
-averageAge = combinedAge / (people.length - 1); // Subtracting 1 to exclude Otto
+averageAge = combinedAge / (numPeople);
+
+console.log(averageAge);
 
 /******************************************************************************
 2.
@@ -127,8 +130,16 @@ diceRoller(5, 20) skal returnere et array med 5 tilfeldige tall fra 1-20.
 ******************************************************************************/
 
 // Skriv koden for oppgave 2 her
+function diceRoller(diceRolls, diceSides) {
+	let rolls = [];
+	for (let i = 0; i < diceRolls; i++) {
+		rolls.push(Math.floor(Math.random() * diceSides) + 1);
+	}
+	return rolls;
+}
 
-
+console.log(diceRoller(4, 6));
+console.log(diceRoller(5, 20));
 
 /******************************************************************************
 3.
@@ -157,6 +168,15 @@ skal returnere:
 
 // Skriv koden for oppgave 3 her
 
+function cleanUpText(arr) {
+	for (let [i, str] of arr.entries()) {
+		arr[i] = str.trim().toLowerCase();
+	}
+	return arr.join(" ");
+}
+let testArray = [" thIS", "teXt  ", " nEeds ", "to", "BE", "cleANED   ", " Up"];
+console.log(cleanUpText(testArray));
+
 /******************************************************************************
 4.
 
@@ -183,9 +203,20 @@ skal returnere "whao is ohe ptino tf ohis?"
 ******************************************************************************/
 
 function doubleSwap(string, charA, charB) {
-	// Skriv koden for oppgave 4 her
+	let newString = ""
+	for (let char of string) {
+		if (char === charA) {
+			newString += charB;
+		} else if (char === charB) {
+			newString += charA;
+		} else {
+			newString += char;
+		}
+		
+	}
+	return newString;
 }
-
+console.log (doubleSwap("this is a string", "i", "s"));
 /******************************************************************************
 5.
 
@@ -225,7 +256,35 @@ const greetings = [
   "Hva er regex?",
   "Nos saludamos con un alegre hola.",
   "Ona pomachała i powiedziała cześć z uśmiechem.",
-  "Good afternoon gentlemen!"
+  "Good afternoon gentlemen!",
+  "Hello, salut, ciao missiour Hello!"
+
 ];
 
 // Skriv koden for oppgave 5 her
+
+const languageHellos = {
+	engelsk: "hello",
+	italiensk: "ciao",
+	fransk: "salut",
+	tysk: "hallo",
+	spansk: "hola",
+	polsk: "czesc"
+}
+
+function helloChecker(text) {
+	let result = ""
+	for (let lang in languageHellos) {
+		if (text.toLowerCase().includes(languageHellos[lang])) {
+			result += `HELLO oppdaget på ${lang}\n`
+		}
+	}
+	if (result) {
+		return result
+	}
+	return "Ingen HELLO oppdaget."
+}
+
+for (let str of greetings) {
+	console.log(helloChecker(str));
+}
